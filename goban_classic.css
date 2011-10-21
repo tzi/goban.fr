@@ -1,0 +1,52 @@
+.goban {
+  display:            inline-block;	
+  padding:            12px;
+  position:           relative;
+  background:         url( http://www.dragongoserver.net/images/wood1.gif );
+  -moz-box-shadow:    inset 0 0 25px #333333;
+  -webkit-box-shadow: inset 0 0 25px #333333;
+  box-shadow:         inset 0 0 25px #333333;
+}
+.goban .action,
+.goban .stone,
+.goban .cell {
+  display:            inline-block;	
+  width:              25px;
+  height:             25px;
+}
+.goban .cell {
+  background:         url( http://www.dragongoserver.net/25/e.gif );
+}
+.goban .cell.col1 {
+  background:         url( http://www.dragongoserver.net/25/el.gif );
+}
+.goban .cell.col19 {   
+  background:         url( http://www.dragongoserver.net/25/er.gif );
+}
+.goban .cell.row1 {
+  background:         url( http://www.dragongoserver.net/25/u.gif );
+}   
+.goban .cell.row19 {   
+  background:         url( http://www.dragongoserver.net/25/d.gif );
+}  
+.goban .cell.col1.row1 {
+  background:         url( http://www.dragongoserver.net/25/ul.gif );
+}   
+.goban .cell.col1.row19 {   
+  background:         url( http://www.dragongoserver.net/25/dl.gif );
+}   
+.goban .cell.col19.row1 {
+  background:         url( http://www.dragongoserver.net/25/ur.gif );
+}
+.goban .cell.col19.row19 {
+  background:         url( http://www.dragongoserver.net/25/dr.gif );
+}
+.goban .stone {
+  background:         url( http://www.dragongoserver.net/25/b.gif );
+}
+.goban .stone.white {
+  background:         url( http://www.dragongoserver.net/25/w.gif );
+}
+.goban .turn {
+  text-decoration:    none;
+}
