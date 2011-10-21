@@ -1,6 +1,6 @@
 <?php
 
-$goban_size=19;
+$goban_size=9;
 
 $turns = array(
     array( 'color' => 'white', 'x' => 3,  'y' => 3 ),
