@@ -3,6 +3,8 @@
 <head>
     <title>Online Goban</title>
     <link href="./goban_classic.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="./goban.js"></script>
 </head>
 <body>
   <div class="goban">
@@ -18,7 +20,7 @@
       if ( isset( $stones[ $x ][ $y ] ) ) $action_classes .= ' stone '.$stones[ $x ][ $y ];
     ?>
       <div class="<?= $cell_classes ?>">
-        <a class="<?= $action_classes ?>"> </a>
+        <a class="<?= $action_classes ?>" href="javascript:;"> </a>
       </div>
     <?php
     }
