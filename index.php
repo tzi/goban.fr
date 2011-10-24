@@ -30,7 +30,7 @@ if ( isset( $_GET[ 'id' ] ) ) {
                 }
                 $goban->stones = $stones;
                 $goban->save();
-                header( 'Location: ?id=' . $goban->id );   
+                header( 'Location: ?id=' . $goban->id . '&key=' .  $goban->key . '&edit=1' );   
                 exit;
             }
 
