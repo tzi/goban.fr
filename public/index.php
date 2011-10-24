@@ -3,46 +3,30 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require_once( '../model/goban.class.php' );
+require_once( '../controller/goban_controller.class.php' );
+$goban_controller = new GobanController();
 
 // GOBAN VIEW
-if ( isset( $_GET[ 'id' ] ) ) {
+if ( $goban_controller->is_goban_url( ) ) {
 
-    if ( Goban::exists( $_GET[ 'id' ] ) ) {
-        $goban = Goban::load( $_GET[ 'id' ] );
-        $edit_goban = FALSE;
+    if ( $goban_controller->load( ) ) {
 
-        // RIGHT TO EDIT
-        if ( isset( $_GET[ 'key' ] ) && $_GET[ 'key' ] == $goban->key ) {
+        // TRY TO EDIT
+        if ( $goban_controller->is_edit_url( ) ) {
+			
+			// NO RIGHT TO EDIT
+			if ( ! $goban_controller->can_edit( ) ) {
+				require( '../view/403.php' );
+				exit;
+			}
 
-            // EDIT GOBAN
-            if ( isset( $_POST[ 'edit' ] ) && isset( $_POST[ 'stone' ] ) ) {
-              
-                // CALCUL STONES COORDONATES
-                $stones = array();
-                foreach ( $_POST[ 'stone' ] as $index => $stone ) {
-                    $x = $index % $goban->size + 1;
-                    $y = floor( $index / $goban->size ) + 1;
-                    if ( ! isset( $stones[ $x ] ) ) {
-                        $stones[ $x ] = array( );
-                    }
-                    $stones[ $x ][ $y ] = ( $stone == 'X' ) ? 'black' : 'white';
-                }
-                $goban->stones = $stones;
-                $goban->save();
-                header( 'Location: ?id=' . $goban->id . '&key=' .  $goban->key . '&edit=1' );   
+            // APPLY EDITION
+            if ( $goban_controller->is_apply_edition_url( ) ) {
+			    $goban_controller->update_stones( );
+                header( 'Location: ' . $goban_controller->edit_url() );   
                 exit;
             }
-
-            if ( isset( $_GET[ 'edit' ] ) && $_GET[ 'edit' ] == 1 ) {
-                $edit_goban = TRUE;
-            }
-
-        // NO RIGHT TO EDIT
-        } else if ( isset( $_GET[ 'key' ] ) ) {
-            require( '../view/403.php' );
-            exit;
-        }
+		}
 
         // DISPLAY GOBAN
         require( '../view/goban.php' );
@@ -56,10 +40,8 @@ if ( isset( $_GET[ 'id' ] ) ) {
 
 // NEW VIEW
 } else if ( isset( $_GET[ 'new' ] ) ) {
-    $goban = new Goban();
-    $goban->size = $_GET[ 'new' ];
-    $goban->save();
-    header( 'Location: ?id=' . $goban->id . '&key=' . $goban->key . '&edit=1' );
+    $goban_controller->create( $_GET[ 'new' ] );
+    header( 'Location: ' . $goban_controller->edit_url() );
     exit;
 }
 

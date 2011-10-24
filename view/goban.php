@@ -1,6 +1,8 @@
 <?php
 
-$content = '<div class="goban ' . ( $edit_goban ? 'edit' : '' ) . '"><div class="board">';
+$goban = $goban_controller->goban;
+
+$content = '<div class="goban ' . ( $goban_controller->edition ? 'edit' : '' ) . '"><div class="board">';
 
 for( $y = 1; $y <= $goban->size; $y++ ) {
     for( $x = 1; $x <= $goban->size; $x++ ) {
@@ -14,10 +16,10 @@ for( $y = 1; $y <= $goban->size; $y++ ) {
         $content_classes = 'content';
         $content_attribute = '';
         $content_tag = 'span';
-        if ( isset( $goban->stones[ $x ][ $y ] ) ) $content_classes .= ' stone '.$goban->stones[ $x ][ $y ];
-        if ( $edit_goban ) {
+        if ( $goban_controller->stone_human_color( $x, $y ) ) $content_classes .= ' stone '.$goban_controller->stone_human_color( $x, $y );
+        if ( $goban_controller->edition ) {
             $content_tag = 'a';
-            $content_attribute = ' href="javascript:;"';
+            $content_attribute = ' href="javascript:;" title="Case ' . $goban_controller->stone_human_coord( $x, $y ) . '"';
             $content_classes .= ' action';
         }
         
@@ -28,11 +30,11 @@ for( $y = 1; $y <= $goban->size; $y++ ) {
 }
 $content .= '</div></div>';
 
-if ( $edit_goban ) {
+if ( $goban_controller->edition ) {
     $content .= '<h2>Liens à retenir</h2>
 <ul>
-    <li>Partager avec vos amis : <a href="http://goban.fr?id=' . $goban->id . '">http://goban.fr?id=' . $goban->id . '</a></li>
-    <li>Editer ce goban : <a href="http://goban.fr?id=' . $goban->id . '&key=' . $goban->key . '&edit=1">http://goban.fr?id=' . $goban->id . '&key=' . $goban->key . '&edit=1</a></li>
+    <li>Partager avec vos amis : <a href="' . $goban_controller->view_url( ) . '">' . $goban_controller->view_url( )  . '</a></li>
+    <li>Editer ce goban : <a href="' . $goban_controller->edit_url( ) . '">' . $goban_controller->edit_url( ) . '</a></li>
 </ul>';
 }
 

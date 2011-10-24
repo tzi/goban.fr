@@ -50,11 +50,6 @@ class Goban {
     }
 
 
-    static public function exists( $id ) {
-        return file_exists( self::data_file( $id ) );
-    }
-
-
     static public function data_file( $id ) {
         return self::$data_folder . $id . '.txt';
     }
