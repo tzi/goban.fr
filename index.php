@@ -3,40 +3,67 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-$goban_size = 9;
-$data_file = './data.php';
+require_once( 'goban.class' );
 
-if ( isset( $_POST[ 'edit' ] ) && isset( $_POST[ 'stone' ] ) ) {
-    $stones = array();
-    $file = fopen( $data_file, 'w' );
-    fputs( $file, '<?php' . PHP_EOL . '$stones = array();' . PHP_EOL );
-    foreach ( $_POST[ 'stone' ] as $index => $stone ) {
-        $index += 1 + $goban_size;
-        $x = $index % $goban_size;
-        $y = floor( $index / $goban_size );
-        if ( ! isset( $stones[ $x ] ) ) {
-            $stones[ $x ] = array( );
-             fputs( $file, '$stones[ ' . $x . ' ] = array();' . PHP_EOL );
+// GOBAN VIEW
+if ( isset( $_GET[ 'id' ] ) ) {
+
+    if ( Goban::exists( $_GET[ 'id' ] ) ) {
+        $goban = Goban::load( $_GET[ 'id' ] );
+        $edit_goban = FALSE;
+
+        // RIGHT TO EDIT
+        if ( isset( $_GET[ 'key' ] ) && $_GET[ 'key' ] == $goban->key ) {
+
+            // EDIT GOBAN
+            if ( isset( $_POST[ 'edit' ] ) && isset( $_POST[ 'stone' ] ) ) {
+              
+                // CALCUL STONES COORDONATES
+                $stones = array();
+                foreach ( $_POST[ 'stone' ] as $index => $stone ) {
+                    $x = $index % $goban->size + 1;
+                    $y = floor( $index / $goban->size ) + 1;
+                    if ( ! isset( $stones[ $x ] ) ) {
+                        $stones[ $x ] = array( );
+                    }
+                    $stones[ $x ][ $y ] = ( $stone == 'X' ) ? 'black' : 'white';
+                }
+                $goban->stones = $stones;
+                $goban->save();
+                header( 'Location: ?id=' . $goban->id );   
+                exit;
+            }
+
+            if ( isset( $_GET[ 'edit' ] ) && $_GET[ 'edit' ] == 1 ) {
+                $edit_goban = TRUE;
+            }
+
+        // NO RIGHT TO EDIT
+        } else if ( isset( $_GET[ 'key' ] ) ) {
+            require( 'view/403.php' );
+            exit;
         }
-        $stones[ $x ][ $y ] = ( $stone == 'X' ) ? 'black' : 'white';
-        fputs( $file, '$stones[ ' . $x . ' ][ ' . $y . ' ] = "' . $stones[ $x ][ $y ] . '";' . PHP_EOL );
-    }  
-    fputs( $file, '?>' );
-    fclose( $file );    
-} else if ( file_exists( $data_file ) ) {
-    require( $data_file );
-} else {
-    $stones = array();
+
+        // DISPLAY GOBAN
+        require( 'view/goban.php' );
+        exit;
+   
+    // UNKNOWN GOBAN 
+    } else {
+      require( 'view/404.php' ); 
+      exit;
+    }
+
+// NEW VIEW
+} else if ( isset( $_GET[ 'new' ] ) ) {
+    $goban = new Goban();
+    $goban->size = $_GET[ 'new' ];
+    $goban->save();
+    header( 'Location: ?id=' . $goban->id . '&key=' . $goban->key . '&edit=1' );
+    exit;
 }
 
-$edit_goban = FALSE;
-if ( isset( $_GET[ 'edit' ] ) && $_GET[ 'edit' ] == 1 ) {
-    $edit_goban = TRUE;
-}
-
-require('./view.php');
+// INDEX VIEW
+require( 'view/index.php' );
 
 ?>
-
-
-

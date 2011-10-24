@@ -1,0 +1,1 @@
+O:5:"Goban":5:{s:2:"id";i:3;s:3:"key";s:6:"aB*tv6";s:6:"stones";a:6:{i:14;a:1:{i:7;s:5:"black";}i:2;a:1:{i:11;s:5:"white";}i:6;a:1:{i:12;s:5:"black";}i:4;a:1:{i:6;s:5:"white";}i:16;a:1:{i:12;s:5:"black";}i:12;a:1:{i:15;s:5:"white";}}s:5:"goban";N;s:4:"size";s:2:"19";}

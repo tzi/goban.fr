@@ -1,0 +1,1 @@
+O:5:"Goban":5:{s:2:"id";i:1;s:3:"key";s:6:"kIT0gp";s:6:"stones";N;s:5:"goban";N;s:4:"size";s:1:"9";}
