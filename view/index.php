@@ -10,6 +10,6 @@ $content  = '<h1>Goban.fr</h1>
     <button type="submit">Nouveau Goban</button>
 </form>';
 
-require( 'view/view.php' );
+require( '../view/view.php' );
 
 ?>

@@ -36,6 +36,6 @@ if ( $edit_goban ) {
 </ul>';
 }
 
-require( 'view/view.php' );
+require( '../view/view.php' );
 
 ?>
