@@ -11,7 +11,7 @@ $main_content = '
 	</div>
 	<ul>';
 foreach ( $goban_controller->last_gobans( 5 ) as $goban) {	
-	$main_content .= '<li><a href="' . $goban_controller->view_url( $goban ) . '">' . $goban->title . '</a></li>';
+	$main_content .= '<li><a href="' . ( $goban_controller->admin ? $goban_controller->view_url( $goban ) : $goban_controller->edit_url( $goban ) . '">' . $goban->title . '</a></li>';
 }
 $main_content .= '</ul>
 </section>
