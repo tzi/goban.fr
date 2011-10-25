@@ -107,11 +107,19 @@ class GobanController {
 	*******************************************************************************/
 	public function edit_url( $goban = null ) {
 		if ( $goban == null ) $goban = $this->goban;
-		return 'http://goban.fr/?id=' . $goban->id . '&edit=' . $goban->key;
+		$url = 'http://goban.fr/?id=' . $goban->id . '&edit=' . $goban->key;
+		if ( $this->admin ) {
+			$url .= '&admin=coco';
+		}
+		return $url;
 	}
 	public function view_url( $goban = null ) {
 		if ( $goban == null ) $goban = $this->goban;
-		return 'http://goban.fr/?id=' . $goban->id;
+		$url = 'http://goban.fr/?id=' . $goban->id;
+		if ( $this->admin ) {
+			$url .= '&admin=coco';
+		}
+		return $url;
 	}
 	public function is_create_url( ) {
 		return isset( $_POST[ 'new' ] );
