@@ -2,7 +2,8 @@
 
 $goban = $goban_controller->goban;
 
-$main_content = '<div class="goban goban_' . $goban->size . ' ' . ( $goban_controller->edition ? 'edit' : '' ) . '">';
+$main_content = '<section>
+<div class="goban goban_' . $goban->size . ' ' . ( $goban_controller->edition ? 'edit' : '' ) . '">';
 if ( $goban_controller->edition ) {
     $main_content .= '<form method="POST" action="' . $goban_controller->edit_url( ) . '">';
 }
@@ -62,11 +63,15 @@ if ( $goban_controller->edition ) {
 		</div>
 	</fieldset>
 </form>
-<h2>Liens à retenir</h2>
-<ul>
-    <li>Partager avec vos amis : <a href="' . $goban_controller->view_url( ) . '">' . $goban_controller->view_url( )  . '</a></li>
-    <li>Editer ce goban : <a href="' . $goban_controller->edit_url( ) . '">' . $goban_controller->edit_url( ) . '</a></li>
-</ul>';
+</section>
+<section>
+    <div class="page-header">
+        <h2>Liens à retenir</h2>
+    </div>
+    <ul>
+        <li>Partager avec vos amis : <a href="' . $goban_controller->view_url( ) . '">' . $goban_controller->view_url( )  . '</a></li>
+        <li>Editer ce goban : <a href="' . $goban_controller->edit_url( ) . '">' . $goban_controller->edit_url( ) . '</a></li>
+    </ul>';
 } else {
     if ( $goban->title ) {
 	    $title = $goban->title;
@@ -85,7 +90,8 @@ if ( $goban_controller->edition ) {
 		<a href="/" class="btn">Retour</a>
 	</div>';
 }
-$main_content .= '</div>';
+$main_content .= '</div>
+</section>';
 
 require( '../view/view.php' );
 
