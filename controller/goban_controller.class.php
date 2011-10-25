@@ -22,14 +22,28 @@ class GobanController {
 	public function exists( $id ) {
         return file_exists( Goban::data_file( $id ) );
     }
+	public function last_gobans( $count ) {
+		$gobans = array();
+        $max_id = Goban::max_id();
+		for ( $i = $max_id; $i > ( $max_id - $count ) && $i > 0 ; $i-- ) {
+			$goban = Goban::load( $i );
+			if ( ! empty( $goban->stones ) &&  ! empty( $goban->title ) ) {
+				$gobans[] = $goban;
+			} else {
+				$count++;
+			}			
+		}
+		return $gobans;
+    }
 	
 	
 	/******************************************************************************
 	   GOBAN MANIPULATION
 	*******************************************************************************/
-	public function create( $size ) {
+	public function create( ) {
 		$this->goban = new Goban();
-	    $this->goban->size = $size;
+		$this->goban->size = $_POST['new'];
+		$this->goban->author = stripslashes( $_POST['author'] );
         $this->goban->save();
 	}
 	public function stones_coord_from_list( $list ) {
@@ -44,9 +58,30 @@ class GobanController {
 		}
 		return $stones;
 	}
-	public function update_stones( ) {
+	public function stones_list( ) {
+		$stones = array();
+		foreach ( $this->goban->stones as $x => $col ) {
+			foreach ( $col as $y => $stone ) {
+				$index = ( $y - 1 ) * $this->goban->size + $x - 1;
+				$stones[ $index ] = $stone;
+			}
+		}
+		return $stones;
+	}
+	public function is_oeil( $x, $y ) {
+		$middle = ceil( $this->goban->size / 2 );
+		$side = ceil( $this->goban->size / 4 );
+		$other = ceil( 3 * $this->goban->size / 4 );
+		if ( ( $x == $middle || $x == $side || $x == $other ) && ( $y == $middle || $y == $side || $y == $other ) ) {
+			return true;
+		}
+		return false;
+	}
+	public function update( ) {
 		$stones = $this->stones_coord_from_list( $_POST[ 'stones' ] );
 		$this->goban->stones = $stones;
+		if ( isset( $_POST[ 'title' ] ) ) $this->goban->title = stripslashes( $_POST[ 'title' ] );
+		if ( isset( $_POST[ 'description' ] ) ) $this->goban->description = stripslashes( $_POST[ 'description' ] );
 		$this->goban->save();
 	}
 	
@@ -66,11 +101,16 @@ class GobanController {
 	/******************************************************************************
 	   URL
 	*******************************************************************************/
-	public function edit_url( ) {
-		return 'http://goban.fr/?id=' . $this->goban->id . '&edit=' . $this->goban->key;
+	public function edit_url( $goban = null ) {
+		if ( $goban == null ) $goban = $this->goban;
+		return 'http://goban.fr/?id=' . $goban->id . '&edit=' . $goban->key;
 	}
-	public function view_url( ) {
-		return 'http://goban.fr/?id=' . $this->goban->id;
+	public function view_url( $goban = null ) {
+		if ( $goban == null ) $goban = $this->goban;
+		return 'http://goban.fr/?id=' . $goban->id;
+	}
+	public function is_create_url( ) {
+		return isset( $_POST[ 'new' ] );
 	}
 	public function is_goban_url( ) {
 		return isset( $_GET[ 'id' ] );

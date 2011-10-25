@@ -22,7 +22,7 @@ if ( $goban_controller->is_goban_url( ) ) {
 
             // APPLY EDITION
             if ( $goban_controller->is_apply_edition_url( ) ) {
-			    $goban_controller->update_stones( );
+			    $goban_controller->update( );
                 header( 'Location: ' . $goban_controller->edit_url() );   
                 exit;
             }
@@ -39,8 +39,8 @@ if ( $goban_controller->is_goban_url( ) ) {
     }
 
 // NEW VIEW
-} else if ( isset( $_GET[ 'new' ] ) ) {
-    $goban_controller->create( $_GET[ 'new' ] );
+} else if ( $goban_controller->is_create_url( ) ) {
+    $goban_controller->create( );
     header( 'Location: ' . $goban_controller->edit_url() );
     exit;
 }

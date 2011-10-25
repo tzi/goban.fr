@@ -1,53 +1,91 @@
 .goban .board {
   font-size:          0;
-  display:            inline-block;	
-  padding:            12px;
   position:           relative;
-  background:         url( ../image//wood1.gif );
+  background-image:   url( ../image/bois2.png );
   -moz-box-shadow:    inset 0 0 25px #333333;
   -webkit-box-shadow: inset 0 0 25px #333333;
   box-shadow:         inset 0 0 25px #333333;
+  zoom:1;
+}
+.goban .board::after {
+  content:"";
+  display:table;
+  clear:both;
 }
 .goban .content,
 .goban .cell {
-  float:              left;	
-  width:              25px;
-  height:             25px;
-}
-.goban .cell {
-  background:         url( ../image//e.gif );
-}
-.goban .cell.first_col {
-  background:         url( ../image//el.gif );
-  clear:              left;
-}
-.goban .cell.last_col {   
-  background:         url( ../image//er.gif );
-}
-.goban .cell.first_row {
-  background:         url( ../image//u.gif );
-}   
-.goban .cell.last_row {   
-  background:         url( ../image//d.gif );
-}  
-.goban .cell.first_col.first_row {
-  background:         url( ../image//ul.gif );
-}   
-.goban .cell.first_col.last_row {   
-  background:         url( ../image//dl.gif );
-}   
-.goban .cell.last_col.first_row {
-  background:         url( ../image//ur.gif );
-}
-.goban .cell.last_col.last_row {
-  background:         url( ../image//dr.gif );
-}
-.goban .stone.black {
-  background:         url( ../image//b.gif );
-}
-.goban .stone.white {
-  background:         url( ../image//w.gif );
+  float:              left;
+  background-repeat:  no-repeat;
+  background-size:    100%;
 }
 .goban .action {
   text-decoration:    none;
+}
+
+
+/* SIZE */
+.goban_19 .content,
+.goban_19 .cell {
+  width:              23px;
+  height:             23px;
+}
+.goban_19 .board {
+  padding:            12px 12px 11px 11px;
+}
+.goban_13 .content,
+.goban_13 .cell {
+  width:              32px;
+  height:             32px;
+}
+.goban_13 .board {
+  padding:            16px 16px 15px 15px;
+}
+.goban_9 .content,
+.goban_9 .cell {
+  width:              46px;
+  height:             46px;
+}
+.goban_9 .board {
+  padding:            23px;
+}
+
+
+
+/* BACKGROUND */
+.goban .cell {
+  background-image:   url( ../image/cell.gif );
+}
+.goban .cell.oeil {
+  background-image:   url( ../image/cell_oeil.gif );
+}
+.goban .cell.first_col {
+  background-image:   url( ../image/cell_left.gif );
+  clear:              left;
+}
+.goban .cell.last_col {   
+  background-image:   url( ../image/cell_right.gif );
+}
+.goban .cell.first_row {
+  background-image:   url( ../image/cell_top.gif );
+}   
+.goban .cell.last_row {   
+  background-image:   url( ../image/cell_bottom.gif );
+}  
+.goban .cell.first_col.first_row {
+  background-image:   url( ../image/cell_top_left.gif );
+}   
+.goban .cell.first_col.last_row {   
+  background-image:   url( ../image/cell_bottom_left.gif );
+}   
+.goban .cell.last_col.first_row {
+  background-image:   url( ../image/cell_top_right.gif );
+}
+.goban .cell.last_col.last_row {
+  background-image:   url( ../image/cell_bottom_right.gif );
+}
+.goban .stone.black {
+  background-image:   url( ../image/X.gif );
+}
+.goban .stone.white {
+  background-image:   url( ../image/O.gif );
 }

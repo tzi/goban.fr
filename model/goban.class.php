@@ -4,7 +4,10 @@ class Goban {
 
     public $id;
     public $key;
-    public $stones;
+    public $stones = array();
+    public $author;
+    public $title;
+    public $description;
     public $goban;
     static public $data_folder = '../data/goban/';
 
@@ -25,13 +28,18 @@ class Goban {
 
 
     public function generate_id() {
+        return self::max_id() + 1; 
+    }
+
+
+    static public function max_id() {
         $num = 0;
         $folder = opendir( self::$data_folder );
         while( $entry = readdir( $folder ) ) {
             if( is_file( self::$data_folder . '/' . $entry ) ) $num++;
         }
         closedir( $folder );
-        return $num + 1; 
+        return $num; 
     }
 
 

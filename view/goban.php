@@ -2,7 +2,7 @@
 
 $goban = $goban_controller->goban;
 
-$main_content = '<div class="goban ' . ( $goban_controller->edition ? 'edit' : '' ) . '">';
+$main_content = '<div class="goban goban_' . $goban->size . ' ' . ( $goban_controller->edition ? 'edit' : '' ) . '">';
 if ( $goban_controller->edition ) {
     $main_content .= '<form method="POST" action="' . $goban_controller->edit_url( ) . '">';
 }
@@ -12,6 +12,7 @@ for( $y = 1; $y <= $goban->size; $y++ ) {
     for( $x = 1; $x <= $goban->size; $x++ ) {
 
         $cell_classes = 'cell row' . $y . ' col' . $x;
+		if ( $goban_controller->is_oeil( $x, $y ) ) $cell_classes .= ' oeil';
         if ( $x == 1 ) $cell_classes .= ' first_col';
         else if ( $x == $goban->size ) $cell_classes .= ' last_col';
         if ( $y == 1 ) $cell_classes .= ' first_row';
@@ -35,17 +36,54 @@ for( $y = 1; $y <= $goban->size; $y++ ) {
 $main_content .= '</div>';
 
 if ( $goban_controller->edition ) {
+    foreach( $goban_controller->stones_list() as $index => $stone ) {
+		$main_content .= '<input type="hidden" name="stones[' . $index . ']" id="stones_' . $index . '" value="' . $stone . '" />';
+	}
     $main_content .= '
-	<div class="actions">
-		<input type="submit" value="Sauvegarder" class="btn primary">&nbsp;
-		<a href="' . $goban_controller->view_url( )  . '" class="btn">Retour</a>
-	</div>	
+	<fieldset>
+		<div class="clearfix">
+			<label for="title">Titre</label>
+			<div class="input">
+				<input type="text" size="30" name="title" id="title" class="xlarge" value="' . $goban->title . '" >
+			</div>
+		</div>
+		<div class="clearfix">
+			<label for="description">Description</label>
+			<div class="input">
+				<textarea rows="2" name="description" id="description" class="xlarge">' . $goban->description . '</textarea>
+				<span class="help-block">
+					Vous ne pouvez pas mettre en forme le texte.
+				</span>
+			</div>
+		</div>
+		<div class="actions">
+			<input type="submit" value="Sauvegarder" class="btn primary">&nbsp;
+			<a href="' . $goban_controller->view_url( )  . '" class="btn">Retour</a>
+		</div>
+	</fieldset>
 </form>
 <h2>Liens à retenir</h2>
 <ul>
     <li>Partager avec vos amis : <a href="' . $goban_controller->view_url( ) . '">' . $goban_controller->view_url( )  . '</a></li>
     <li>Editer ce goban : <a href="' . $goban_controller->edit_url( ) . '">' . $goban_controller->edit_url( ) . '</a></li>
 </ul>';
+} else {
+    if ( $goban->title ) {
+	    $title = $goban->title;
+		$main_content .= '<h3>
+			' . $goban->title;
+		if ( $goban->author ) {
+			$main_content .= '&nbsp;&nbsp;&nbsp;<small>par ' . $goban->author . '</small>';
+		}
+		$main_content .= '</h3>';
+	}
+	if ( $goban->description ) {
+		$main_content .= '<div class="well">' . nl2br( $goban->description ) . '</div>';
+	}
+	$main_content .= '
+	<div class="actions">
+		<a href="/" class="btn">Retour</a>
+	</div>';
 }
 $main_content .= '</div>';
 
