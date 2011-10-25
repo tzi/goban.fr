@@ -57,8 +57,8 @@ if ( $goban_controller->edition ) {
 			</div>
 		</div>
 		<div class="actions">
-			<input type="submit" value="Sauvegarder" class="btn primary">&nbsp;
-			<a href="' . $goban_controller->view_url( )  . '" class="btn">Retour</a>
+			<a href="' . $goban_controller->view_url( )  . '" class="btn">Retour</a>&nbsp;
+			<input type="submit" value="Sauvegarder" class="btn primary">
 		</div>
 	</fieldset>
 </form>
