@@ -21,7 +21,7 @@ class Goban {
         $allowed_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_@$%*";
         $key = '';
         for( $i = 1; $i <= 6; $i++ ) {
-            $key .= $allowed_chars[ rand( 0, strlen( $allowed_chars ) ) ];
+            $key .= $allowed_chars[ rand( 0, strlen( $allowed_chars ) - 1 ) ];
         }
         return $key;
     }
