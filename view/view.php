@@ -3,11 +3,22 @@
 <head>
     <title>Goban.fr</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="./stylesheet/goban_classic.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./stylesheet/goban.css" />
+    <link rel="stylesheet" type="text/css" href="./stylesheet/goban_classic.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
     <script src="./javascript/goban.js"></script>
 </head>
 <body>
-    <?= $content ?>
+	<div class="container">
+		<div class="page-header">
+			<h1><a href="/">Goban.fr</a></h1>
+		</div>
+		<div class="row">
+			<div class="span8">
+				<?= $main_content ?>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

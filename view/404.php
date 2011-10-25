@@ -1,7 +1,12 @@
 <?php
 
-$content  = '<h1>Goban.fr</h1>
-<h2>Erreur 404 : goban non-trouvé</h2>';
+$main_content  = '
+<div class="alert-message warning">
+	<p>
+		<strong>Erreur 404</strong>
+		Le goban recherché est introuvable.
+	</p>
+</div>';
 
 require( '../view/view.php' );
 
