@@ -61,7 +61,19 @@ if ( $goban_controller->edition ) {
 					Vous ne pouvez pas mettre en forme le texte.
 				</span>
 			</div>
-		</div>
+		</div>';
+    if ( $goban_controller->admin ) {
+        $main_content .= '
+		<div class="clearfix">
+            		<label for="prependedInput2">Prepended checkbox</label>
+    			<div class="input">
+      				<div class="input-prepend">
+        				<label class="add-on"><input type="checkbox" value="" id="" name=""></label>
+      				</div>
+    			</div>
+  		</div>';
+    }
+    $main_content .= '		
 		<div class="actions">
                         <a href="' . $cancel_href  . '" class="btn">Annuler</a>&nbsp;
 			<input type="submit" value="Sauvegarder" class="btn primary">
