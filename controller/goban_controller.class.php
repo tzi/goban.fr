@@ -12,7 +12,7 @@ class GobanController {
 	   INITIALIZATION
 	*******************************************************************************/
     public function load( ) {
-		if ( $this->exists( $_GET[ 'id' ] ) ) {
+        if ( $this->exists( $_GET[ 'id' ] ) ) {
 			$goban = Goban::load( $_GET[ 'id' ] );
 			$this->goban = $goban;
 			return TRUE;
@@ -22,18 +22,18 @@ class GobanController {
 	public function exists( $id ) {
         return file_exists( Goban::data_file( $id ) );
     }
-	public function last_gobans( $count ) {
-		$gobans = array();
+    public function last_gobans( $count ) {
+        $gobans = array();
         $max_id = Goban::max_id();
-		for ( $i = $max_id; $i > ( $max_id - $count ) && $i > 0 ; $i-- ) {
-			$goban = Goban::load( $i );
-			if ( ! empty( $goban->stones ) &&  ! empty( $goban->title ) ) {
-				$gobans[] = $goban;
-			} else {
-				$count++;
-			}			
-		}
-		return $gobans;
+        for ( $i = $max_id; $i > ( $max_id - $count ) && $i > 0 ; $i-- ) {
+            $goban = Goban::load( $i );
+            if ( ! empty( $goban->stones ) &&  ! empty( $goban->title ) ) {
+                $gobans[] = $goban;
+            } else {
+                $count++;
+            }			
+        }
+        return $gobans;
     }
 	
 	
@@ -70,9 +70,10 @@ class GobanController {
 	}
 	public function is_oeil( $x, $y ) {
 		$middle = ceil( $this->goban->size / 2 );
-		$side = ceil( $this->goban->size / 4 );
-		$other = ceil( 3 * $this->goban->size / 4 );
-		if ( ( $x == $middle || $x == $side || $x == $other ) && ( $y == $middle || $y == $side || $y == $other ) ) {
+		$side = min( ceil( $this->goban->size / 4 ), 3 );
+		if ( ( $x == $middle || $x == $side || $x == ( $this->goban->size - $side ) ) && 
+		     ( $y == $middle || $y == $side || $y == ( $this->goban->size - $side ) ) )
+		{
 			return true;
 		}
 		return false;
