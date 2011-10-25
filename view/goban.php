@@ -65,10 +65,10 @@ if ( $goban_controller->edition ) {
     if ( $goban_controller->admin ) {
         $main_content .= '
 		<div class="clearfix">
-            		<label for="prependedInput2">Prepended checkbox</label>
+            		<label for="home">Display home</label>
     			<div class="input">
       				<div class="input-prepend">
-        				<label class="add-on"><input type="checkbox" value="" id="" name=""></label>
+        				<label class="add-on"><input type="checkbox" value="on" id="home" name="home"></label>
       				</div>
     			</div>
   		</div>';

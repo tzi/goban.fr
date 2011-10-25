@@ -73,9 +73,9 @@ class GobanController {
 	}
 	public function is_oeil( $x, $y ) {
 		$middle = ceil( $this->goban->size / 2 );
-		$side = min( ceil( $this->goban->size / 4 ), 3 );
-		if ( ( $x == $middle || $x == $side || $x == ( $this->goban->size - $side ) ) && 
-		     ( $y == $middle || $y == $side || $y == ( $this->goban->size - $side ) ) )
+		$side = min( ceil( $this->goban->size / 4 ), 4 );
+		if ( ( $x == $middle || $x == $side || $x == ( $this->goban->size - $side + 1 ) ) && 
+		     ( $y == $middle || $y == $side || $y == ( $this->goban->size - $side + 1 ) ) )
 		{
 			return true;
 		}
@@ -86,6 +86,7 @@ class GobanController {
 		$this->goban->stones = $stones;
 		if ( isset( $_POST[ 'title' ] ) ) $this->goban->title = stripslashes( $_POST[ 'title' ] );
 		if ( isset( $_POST[ 'description' ] ) ) $this->goban->description = stripslashes( $_POST[ 'description' ] );
+                if ( isset( $_POST[ 'home' ] ) ) $this->goban->home = $_POST[ 'home' ] == 'on'; 
 		$this->goban->save();
 	}
 	
