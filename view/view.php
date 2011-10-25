@@ -18,10 +18,8 @@
 				<small>Le site de partage de goban en français</small>
 			</h1>
 		</div>
-		<div class="row">
-			<div class="span8">
-				<?= $main_content ?>
-			</div>
+		<div>
+			<?= $main_content ?>
 		</div>
 	</div>
 </body>
