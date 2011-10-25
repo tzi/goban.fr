@@ -68,7 +68,7 @@ if ( $goban_controller->edition ) {
             		<label for="home">Display home</label>
     			<div class="input">
       				<div class="input-prepend">
-        				<label class="add-on"><input type="checkbox" value="on" id="home" name="home"></label>
+        				<label class="add-on"><input type="checkbox" value="on" id="home" name="home" ' . ( $goban->home ? 'checked="checked"' : '' ) . '></label>
       				</div>
     			</div>
   		</div>';

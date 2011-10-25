@@ -97,7 +97,10 @@ class GobanController {
 		$this->goban->stones = $stones;
 		if ( isset( $_POST[ 'title' ] ) ) $this->goban->title = stripslashes( $_POST[ 'title' ] );
 		if ( isset( $_POST[ 'description' ] ) ) $this->goban->description = stripslashes( $_POST[ 'description' ] );
-                if ( isset( $_POST[ 'home' ] ) ) $this->goban->home = $_POST[ 'home' ] == 'on'; 
+                if ( $this->admin ) {
+                    if ( isset( $_POST[ 'home' ] ) ) $this->goban->home = TRUE; 
+                    else $this->goban->home = FALSE;
+                }
 		$this->goban->save();
 	}
 	
