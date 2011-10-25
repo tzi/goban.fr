@@ -4,7 +4,8 @@ require_once( '../model/goban.class.php' );
 
 class GobanController {
 
-	public $edition = FALSE;
+    public $admin = FALSE;
+    public $edition = FALSE;
     public $goban;
 	
 	
@@ -27,7 +28,9 @@ class GobanController {
         $max_id = Goban::max_id();
         for ( $i = $max_id; $i > ( $max_id - $count ) && $i > 0 ; $i-- ) {
             $goban = Goban::load( $i );
-            if ( ! empty( $goban->stones ) &&  ! empty( $goban->title ) ) {
+            if ( ( $this->admin && ! empty( $goban->stones ) &&  ! empty( $goban->title ) ) ||
+                 ( ! $this->admin && $goban->home ) )
+            {
                 $gobans[] = $goban;
             } else {
                 $count++;
