@@ -135,6 +135,7 @@ class GobanController {
 	}
 	public function can_edit( ) {
 		$this->edition = $_GET[ 'edit' ] == $this->goban->key;
+		if ( $this->admin ) $this->edition = TRUE;
 		return $this->edition;
 	}
 }
