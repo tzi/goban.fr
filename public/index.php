@@ -6,6 +6,13 @@ error_reporting(E_ALL);
 require_once( '../controller/goban_controller.class.php' );
 $goban_controller = new GobanController();
 
+$admin = FALSE;
+if ( isset( $_GET[ 'admin' ] ) && $_GET[ 'admin' ] == 'coco' ) {
+    $admin = TRUE;
+    $goban_controller->admin = TRUE;
+}
+
+
 // GOBAN VIEW
 if ( $goban_controller->is_goban_url( ) ) {
 
