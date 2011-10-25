@@ -15,7 +15,14 @@
 		<div class="page-header">
 			<h1>
 				<a href="/">Goban.fr</a>
-				<small>Le site de partage de goban en français</small>
+				<small>
+				<?php
+					$slogans = array();
+					$slogans[] = 'Le site de partage de goban en français';
+					$slogans[] = 'Le jeu de go sur votre mobile';
+					echo $slogans[ rand( 0, count( $slogans ) - 1 ) ];
+				?>
+				</small>
 			</h1>
 		</div>
 		<div>
