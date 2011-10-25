@@ -2,12 +2,12 @@
 
 $main_content = '
 <section>
-	<p><a href="/">Goban.fr</a> vous permet de sauvergarder une partie de Go.</p>
+	<p><a href="/">Goban.fr</a> vous permet de sauvegarder une partie de Go.</p>
 	<p>Une fois sauvegardé, vous pouvez alors facilement le partager avec vos amis.</p>
 </section>
 <section>
 	<div class="page-header">
-		<h2>Derniers Goban suavergardés</h2>
+		<h2>Derniers Goban sauvegardés</h2>
 	</div>
 	<ul>';
 foreach ( $goban_controller->last_gobans( 3 ) as $goban) {	
