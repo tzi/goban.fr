@@ -40,6 +40,11 @@ if ( $goban_controller->edition ) {
     foreach( $goban_controller->stones_list() as $index => $stone ) {
 		$main_content .= '<input type="hidden" name="stones[' . $index . ']" id="stones_' . $index . '" value="' . $stone . '" />';
 	}
+    if ( empty( $goban->stones ) ) {
+        $cancel_href = '/';
+    } else {
+    	$cancel_href = $goban_controller->view_url( );
+    }
     $main_content .= '
 	<fieldset>
 		<div class="clearfix">
@@ -58,7 +63,7 @@ if ( $goban_controller->edition ) {
 			</div>
 		</div>
 		<div class="actions">
-			<a href="' . $goban_controller->view_url( )  . '" class="btn">Retour</a>&nbsp;
+                        <a href="' . $cancel_href  . '" class="btn">Annuler</a>&nbsp;
 			<input type="submit" value="Sauvegarder" class="btn primary">
 		</div>
 	</fieldset>
