@@ -9,6 +9,7 @@ class Goban {
     public $title;
     public $description;
     public $goban;
+    public $home = false;
     static public $data_folder = '../data/goban/';
 
 
