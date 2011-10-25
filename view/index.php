@@ -10,7 +10,7 @@ $main_content = '
 		<h2>Derniers Goban sauvegardés</h2>
 	</div>
 	<ul>';
-foreach ( $goban_controller->last_gobans( 3 ) as $goban) {	
+foreach ( $goban_controller->last_gobans( 5 ) as $goban) {	
 	$main_content .= '<li><a href="' . $goban_controller->view_url( $goban ) . '">' . $goban->title . '</a></li>';
 }
 $main_content .= '</ul>
