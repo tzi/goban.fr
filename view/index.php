@@ -5,19 +5,33 @@ $main_content = '
 	<p><a href="/">Goban.fr</a> vous permet de sauvegarder une partie de Go.</p>
 	<p>Une fois sauvegardé, vous pouvez alors facilement le partager avec vos amis.</p>
 </section>
-<section>
+<div class="row">
+<section class="span4">
 	<div class="page-header">
-		<h2>Derniers Goban sauvegardés</h2>
+		<h3>A la une</h3>
 	</div>
 	<ul>';
-foreach ( $goban_controller->last_gobans( 5 ) as $goban) {	
+foreach ( $goban_controller->last_home_gobans( 5 ) as $goban) {	
 	$main_content .= '<li><a href="' . ( $goban_controller->admin ? $goban_controller->edit_url( $goban ) : $goban_controller->view_url( $goban ) ) . '">' . $goban->title . '</a></li>';
 }
 $main_content .= '</ul>
 </section>
+
+<section class="span4">
+        <div class="page-header">
+                <h3>Les derniers</h3>
+        </div>
+        <ul>';
+foreach ( $goban_controller->last_gobans( 5 ) as $goban) {      
+        $main_content .= '<li><a href="' . ( $goban_controller->admin ? $goban_controller->edit_url( $goban ) : $goban_controller->view_url( $goban ) ) . '">' . $goban->title . '</a></li>';
+}
+$main_content .= '</ul>
+</section>
+</div>
+
 <section>
 	<div class="page-header">
-		<h2>Créer un nouveau Goban</h2>
+		<h3>Créer un nouveau Goban</h3>
 	</div>
 	<form method="post">
 		<div class="clearfix">

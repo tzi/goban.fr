@@ -28,9 +28,20 @@ class GobanController {
         $max_id = Goban::max_id();
         for ( $i = $max_id; $i > ( $max_id - $count ) && $i > 0 ; $i-- ) {
             $goban = Goban::load( $i );
-            if ( ( $this->admin && ! empty( $goban->stones ) &&  ! empty( $goban->title ) ) ||
-                 ( ! $this->admin && $goban->home ) )
-            {
+            if ( ! empty( $goban->stones ) &&  ! empty( $goban->title ) ) {
+                $gobans[] = $goban;
+            } else {
+                $count++;
+            }
+        }
+        return $gobans;
+    }
+    public function last_home_gobans( $count ) {
+        $gobans = array();
+        $max_id = Goban::max_id();
+        for ( $i = $max_id; $i > ( $max_id - $count ) && $i > 0 ; $i-- ) {
+            $goban = Goban::load( $i );
+            if ( $goban->home ) {
                 $gobans[] = $goban;
             } else {
                 $count++;

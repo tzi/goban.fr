@@ -1,12 +1,15 @@
 .container {
-	width: 460px;
+    width: 460px;
+}
+.page-header {
+    margin: 18px 0;
 }
 .page-header h1 {
-	margin: 8px 0;
+    margin: 8px 0;
 }
 h1 a {
-	color: black;
+    color: black;
 }
 .actions {
-	text-align: right;
+    text-align: right;
 }

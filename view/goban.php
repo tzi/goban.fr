@@ -83,7 +83,7 @@ if ( $goban_controller->edition ) {
 </section>
 <section>
     <div class="page-header">
-        <h2>Liens à retenir</h2>
+        <h3>Liens à retenir</h3>
     </div>
     <ul>
         <li>Partager avec vos amis : <a href="' . $goban_controller->view_url( ) . '">' . $goban_controller->view_url( )  . '</a></li>
@@ -100,7 +100,7 @@ if ( $goban_controller->edition ) {
 		$main_content .= '</h3>';
 	}
 	if ( $goban->description ) {
-		$main_content .= '<div class="well">' . nl2br( $goban->description ) . '</div>';
+		$main_content .= '<div>' . nl2br( $goban->description ) . '</div>';
 	}
 	$main_content .= '
 	<div class="actions">
