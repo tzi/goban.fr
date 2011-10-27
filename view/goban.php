@@ -34,7 +34,7 @@ for( $y = 1; $y <= $goban->size; $y++ ) {
         $main_content .= '</div>';
     }
 }
-$main_content .= '</div>';
+$main_content .= '</div><div class="info">';
 
 if ( $goban_controller->edition ) {
     foreach( $goban_controller->stones_list() as $index => $stone ) {
@@ -107,7 +107,7 @@ if ( $goban_controller->edition ) {
 		<a href="/" class="btn">Retour</a>
 	</div>';
 }
-$main_content .= '</div>
+$main_content .= '</div></div>
 </section>';
 
 require( '../view/view.php' );
