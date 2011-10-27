@@ -10,8 +10,14 @@ h1 a {
 }
 .btn.primary {
     background-color: #AD7E1F;
-    background-image: -moz-linear-gradient(center top , #D99D26, #AD7E1F);
-    background-image: -webkit-linear-gradient(center top , #D99D26, #AD7E1F);
+    background-image:-khtml-gradient(linear, left top, left bottom, from(#D99D26), to(#AD7E1F));
+    background-image:-moz-linear-gradient(top, #D99D26, #AD7E1F);
+    background-image:-ms-linear-gradient(top, #D99D26, #AD7E1F);
+    background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #D99D26), color-stop(100%, #AD7E1F));
+    background-image:-webkit-linear-gradient(top, #D99D26, #AD7E1F);
+    background-image:-o-linear-gradient(top, #D99D26, #AD7E1F);
+    background-image:linear-gradient(top, #D99D26, #AD7E1F);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#D99D26', endColorstr='#AD7E1F', GradientType=0);
 }
 input:focus, textarea:focus {
     border-color: rgba(173, 126, 31, 0.8);
