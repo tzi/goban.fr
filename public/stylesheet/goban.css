@@ -36,7 +36,8 @@ input:focus, textarea:focus {
     margin: 8px 0;
 }
 section .page-header {
-    margin: 18px 0 9px;
+    margin: 27px 0 9px;
+    padding: 0 9px;
 }
 .input-xlarge, input.xlarge, textarea.xlarge, select.xlarge {
     width: 330px;
@@ -50,4 +51,7 @@ section .page-header {
 }
 .span4 {
     width: 240px;
+}
+p {
+    padding: 0 9px;
 }
