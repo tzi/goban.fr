@@ -41,6 +41,6 @@ section .page-header {
     border: none;
     padding: 0 10px 18px 20px;
 }
-span4 {
+.span4 {
     width: 240px;
 }
