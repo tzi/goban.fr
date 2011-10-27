@@ -38,5 +38,6 @@ section .page-header {
     text-align: right;
     background: transparent;
     margin: 18px 0 0;
+    border: none;
     padding: 0 10px 18px 20px;
 }
