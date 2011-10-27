@@ -1,4 +1,8 @@
+.goban {
+  text-align:         center;
+}
 .goban .board {
+  display:            inline-block;
   font-size:          0;
   position:           relative;
   background-image:   url( ../image/bois2.png );
@@ -17,36 +21,14 @@
   float:              left;
   background-repeat:  no-repeat;
   background-size:    100% 100%;
+  width:              25px;
+  height:             25px;
 }
 .goban .action {
   text-decoration:    none;
 }
-
-
-/* SIZE */
-.goban_19 .content,
-.goban_19 .cell {
-  width:              23px;
-  height:             23px;
-}
-.goban_19 .board {
-  padding:            12px 12px 11px 11px;
-}
-.goban_13 .content,
-.goban_13 .cell {
-  width:              33px;
-  height:             33px;
-}
-.goban_13 .board {
-  padding:            16px 16px 15px 15px;
-}
-.goban_9 .content,
-.goban_9 .cell {
-  width:              46px;
-  height:             46px;
-}
-.goban_9 .board {
-  padding:            23px;
+.goban .info {
+  text-align:         left;
 }
 
 
