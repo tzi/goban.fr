@@ -3,7 +3,7 @@
 $main_content = '
 <section>
 	<p><a href="/">Goban.fr</a> vous permet de sauvegarder une partie de Go.</p>
-	<p>Une fois sauvegardé, vous pouvez alors facilement le partager avec vos amis.</p>
+	<p>Une fois sauvegardée, vous pouvez alors facilement la partager avec vos amis.</p>
 </section>
 <div class="row">
 <section class="span4">
