@@ -12,6 +12,10 @@ h1 a {
     background-color: #AD7E1F;
     background-image: -moz-linear-gradient(center top , #D99D26, #AD7E1F);
 }
+input:focus, textarea:focus {
+    border-color: rgba(173, 126, 31, 0.8);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset, 0 0 8px rgba(173, 126, 31, 0.6);
+}
 
 .container {
     width: 500px;
